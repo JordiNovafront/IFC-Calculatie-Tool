@@ -8,7 +8,7 @@ Volledig stappenplan: `docs/stappenplan.md` (origineel: `referentie/Stappenplan_
 
 | Fase | Inhoud | Status | Tag |
 |---|---|---|---|
-| 0 | Projectopzet, datamodel, testmodel, excel_mapping.yaml | **wacht op akkoord** (80 tests groen) | – |
+| 0 | Projectopzet, datamodel, testmodel, excel_mapping.yaml | **wacht op akkoord** (87 tests groen) | – |
 | 1 | IFC importeren, viewer, meten, importrapport | open | – |
 | 2 | Elementen koppelen aan STABU (koppeltabel, handmatig, bewaren) | open | – |
 | 3 | Hoeveelheden berekenen, overzicht, ingekleurd 3D | open | – |
@@ -56,6 +56,8 @@ Status: `open` / `bezig` / `wacht op akkoord` / `akkoord`. Werk deze tabel bij b
   zelf aangemaakte profielen (`IfcRectangleProfileDef`) staan in projecteenheid (testmodel: mm).
 - Openingen: `api.feature.add_feature(feature=opening, element=wand)` (niet meer `void.add_opening`).
 - Validatie: `ifcopenshell.validate.validate(f, ifcopenshell.validate.json_logger())`.
+- **Geometrie:** houd het resultaat van `ifcopenshell.geom.create_shape(...)` in een variabele zolang je
+  `.geometry.verts` gebruikt. Een gekoppelde aanroep `create_shape(...).geometry.verts` geeft geheugenrommel.
 
 ## Commando's
 
@@ -65,7 +67,11 @@ uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r pypro
 chmod a-w referentie/*.xlsx referentie/*.pdf        # optioneel: referentie/ schrijfbeveiligen (git bewaart dit niet)
 .venv/bin/python tools/maak_testmodel.py          # testmodel IFC4 + IFC2x3 opnieuw genereren
 .venv/bin/python tools/genereer_excel_mapping.py  # excel_mapping.yaml opnieuw genereren uit het template
+.venv/bin/python tools/maak_overzicht.py          # docs/fase0_overzicht.html opnieuw maken
 ```
+
+`tools/maak_overzicht.py` maakt `docs/fase0_overzicht.html`: losse, offline overzichtspagina voor het
+controlemoment van Bastiaan (draait ook de tests). Dit is niet de tool zelf.
 
 `tools/genereer_excel_mapping.py` is een eenmalig hulpmiddel. Daarna is `config/excel_mapping.yaml`
 leidend en wordt hij met de hand bijgehouden; opnieuw genereren overschrijft handmatige wijzigingen
@@ -84,6 +90,7 @@ docs/
   stappenplan.md            het volledige stappenplan
   testmodel_handberekening.md  handberekening van het testmodel voor Bastiaan
   excel_analyse.md          gegenereerd: uitgelezen calculatieregels + controles op het template
+  fase0_overzicht.html      gegenereerd: offline overzichtspagina controlemoment 0 (dubbelklikken)
 frontend/                   (fase 1) Vite + That Open Engine
 referentie/                 ALLEEN-LEZEN: template, stappenplan-PDF, later project-IFC's
 tests/
@@ -92,6 +99,7 @@ tests/
 tools/
   maak_testmodel.py         genereert het testmodel met IfcOpenShell
   genereer_excel_mapping.py eenmalige scan van het template → excel_mapping.yaml
+  maak_overzicht.py         maakt docs/fase0_overzicht.html
 ```
 
 ## Datamodel (backend/app/datamodel.py)
