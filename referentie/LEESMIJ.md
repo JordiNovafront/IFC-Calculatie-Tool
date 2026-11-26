@@ -2,6 +2,7 @@
 
 Aangeleverd door Bastiaan / Jordi. Nooit wijzigen; exports zijn altijd nieuwe bestanden.
 De test `tests/test_referentie_alleen_lezen.py` controleert de SHA-256 van elk bestand.
+Zet de bestanden na een clone eventueel op alleen-lezen (git bewaart dat niet).
 
 | Bestand | Inhoud |
 |---|---|

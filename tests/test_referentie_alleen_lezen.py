@@ -1,6 +1,5 @@
 """referentie/ is alleen-lezen: bestanden mogen nooit wijzigen."""
 import hashlib
-import os
 
 import pytest
 
@@ -18,7 +17,6 @@ def test_referentiebestand_ongewijzigd(root, naam, sha):
     assert hashlib.sha256(pad.read_bytes()).hexdigest() == sha, f"{naam} is gewijzigd!"
 
 
-@pytest.mark.parametrize("naam", REFERENTIE_HASHES)
-def test_referentiebestand_schrijfbeveiligd(root, naam):
-    pad = root / "referentie" / naam
-    assert not (os.stat(pad).st_mode & 0o222), f"{naam} is niet schrijfbeveiligd"
+# Schrijfbeveiliging (chmod / Windows "Alleen-lezen") wordt niet door git bewaard en is dus geen
+# betrouwbare test op een verse clone. De hash-test hierboven is de garantie; daarnaast controleert
+# tests/test_excel_config.py::test_template_blijft_onaangeroerd dat de lezer het template niet wijzigt.
