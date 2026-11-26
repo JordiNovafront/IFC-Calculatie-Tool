@@ -1,0 +1,115 @@
+{
+  "_uitleg": "Verwachte waarden voor alle fases. Maten en hoeveelheden in meters (m, m2, m3). Bron: stappenplan fase 0; handberekening in docs/testmodel_handberekening.md.",
+  "tolerantie_procent": 1.0,
+  "testmodel": {
+    "bestanden": {
+      "IFC4": "tests/testmodel/testmodel_ifc4.ifc",
+      "IFC2X3": "tests/testmodel/testmodel_ifc2x3.ifc"
+    },
+    "lengte_eenheid": "MILLIMETRE",
+    "project": {"naam": "BMN testmodel", "global_id": "31z4_D4VfGdA8dzEpQZykw"},
+    "verdieping": {"naam": "00 Begane grond", "global_id": "1TNYDIlM9TkeDkYL0GLD$c", "peil": 0.0},
+    "aantal_bouwelementen": 4,
+    "aantal_sparingen": 1,
+    "elementen": {
+      "betonwand": {
+        "global_id": "0ehALCh75R3u8YW7M7LDCr",
+        "ifc_klasse": "IfcWall",
+        "naam": "Betonwand",
+        "type_naam": "Betonwand 300",
+        "materiaal": "Beton C30/37",
+        "verdieping": "00 Begane grond",
+        "lengte": 10.0,
+        "hoogte": 3.0,
+        "dikte": 0.3,
+        "volume_bruto": 9.0,
+        "volume_netto": 8.55,
+        "zijvlak_bruto_per_zijde": 30.0,
+        "zijvlak_netto_per_zijde": 28.5,
+        "sparingen": ["raamsparing"]
+      },
+      "betonvloer": {
+        "global_id": "2R3DE3rzbP68QC_SQx5BnI",
+        "ifc_klasse": "IfcSlab",
+        "naam": "Betonvloer",
+        "type_naam": "Betonvloer 250",
+        "materiaal": "Beton C30/37",
+        "verdieping": "00 Begane grond",
+        "lengte": 10.0,
+        "breedte": 8.0,
+        "dikte": 0.25,
+        "volume_bruto": 20.0,
+        "volume_netto": 20.0,
+        "bovenvlak": 80.0,
+        "sparingen": []
+      },
+      "betonkolom": {
+        "global_id": "1VZbGgyobSH8NIIWOZwp82",
+        "ifc_klasse": "IfcColumn",
+        "naam": "Betonkolom",
+        "type_naam": "Betonkolom 400x400",
+        "materiaal": "Beton C30/37",
+        "verdieping": "00 Begane grond",
+        "lengte": 0.4,
+        "breedte": 0.4,
+        "hoogte": 3.0,
+        "volume_bruto": 0.48,
+        "volume_netto": 0.48,
+        "sparingen": []
+      },
+      "kalkzandsteenwand": {
+        "global_id": "2NpMdy14bPShgpj8u6Wzh$",
+        "ifc_klasse": "IfcWall",
+        "naam": "Kalkzandsteenwand",
+        "type_naam": "Kalkzandsteenwand 100",
+        "materiaal": "Kalkzandsteen",
+        "verdieping": "00 Begane grond",
+        "lengte": 5.0,
+        "hoogte": 2.7,
+        "dikte": 0.1,
+        "volume_bruto": 1.35,
+        "volume_netto": 1.35,
+        "zijvlak_bruto_per_zijde": 13.5,
+        "zijvlak_netto_per_zijde": 13.5,
+        "sparingen": []
+      }
+    },
+    "sparingen": {
+      "raamsparing": {
+        "global_id": "1JLSG6jx5HyAW$Wlr72Aei",
+        "ifc_klasse": "IfcOpeningElement",
+        "naam": "Raamsparing",
+        "in_element": "betonwand",
+        "breedte": 1.0,
+        "hoogte": 1.5,
+        "borstwering": 0.9,
+        "oppervlak": 1.5,
+        "volume_in_wand": 0.45
+      }
+    },
+    "fase_3": {
+      "betonmortel_netto_m3": 29.03,
+      "bekisting_betonwand_2_zijden_netto_m2": 57.0,
+      "lijmwerk_kalkzandsteen_m2": 13.5
+    },
+    "fase_4": {
+      "sparingsdrempel_2m2_betonwand_volume_m3": 9.0,
+      "sparingsdrempel_2m2_betonwand_zijvlak_per_zijde_m2": 30.0,
+      "betonwand_uitgevinkt_betonmortel_m3": 20.48,
+      "bekisting_1_zijde_m2": 28.5
+    }
+  },
+  "excel": {
+    "_uitleg": "Verwacht aantal calculatieregels (= blokken met een totaalformule) per tabblad in referentie/uittrekstaat_template.xlsx. Handmatig geteld; ter bevestiging door Bastiaan.",
+    "template": "referentie/uittrekstaat_template.xlsx",
+    "aantal_tabbladen": 32,
+    "aantal_calculatieregels": 233,
+    "per_tabblad": {
+      "§12": 1, "§14": 1, "§15": 7, "§17": 2, "§20": 4, "§21": 22, "§22": 29, "§23": 12,
+      "§24": 3, "§25": 4, "§26": 1, "§30": 21, "§31": 6, "§32": 9, "§33": 6, "§34": 8,
+      "§35": 8, "§36": 6, "§37": 1, "§38": 5, "§40": 18, "§41": 8, "§42": 3, "§43": 8,
+      "§44": 8, "§45": 10, "§46": 11, "§48": 11
+    },
+    "tabbladen_zonder_regels": ["§10", "§16", "§47", "Installaties"]
+  }
+}
