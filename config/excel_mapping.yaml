@@ -1,0 +1,2619 @@
+# excel_mapping.yaml – opbouw van de BMN-uittrekstaat
+#
+# LEIDEND BESTAND: de applicatie leest sheetnamen, rijen, kolommen en cellen alleen hieruit.
+# Eerste versie gegenereerd met tools/genereer_excel_mapping.py op het template in referentie/;
+# daarna met de hand bijhouden. Verandert het template, pas dan alleen dit bestand aan.
+#
+# Per calculatieregel (= één blok in de uittrekstaat):
+#   id               <hoofdstuk>.<volgnummer>, vaste sleutel (titels zijn niet uniek)
+#   tabblad          naam van het tabblad
+#   titel / titelcel titel ter controle: de lezer meldt een fout als de cel iets anders bevat
+#   kopregel         rij met Omschrijving | nr. | lengte | ...
+#   omschrijvingcel  cel met de omschrijving van de eerste invoerrij
+#   invoerrijen      rijen die gevuld worden (fase 5)
+#   invoerkolommen   kolom -> kopnaam van de invoervelden (maten, aantallen, kengetallen)
+#   hoeveelheden     uitkomsten van het blok; de eerste is de hoofdhoeveelheid
+#                    naam, kolom, eenheidcel, totaalcel, verliescel (optioneel)
+#   waarschuwingen   opvallende zaken in het template, ter beoordeling door Bastiaan
+
+versie: 1
+standaard_template: referentie/uittrekstaat_template.xlsx
+overgeslagen_tabbladen:
+- {tabblad: §10, reden: 'alleen prijskolommen, geen hoeveelheden'}
+- {tabblad: §16, reden: 'alleen prijskolommen, geen hoeveelheden'}
+- {tabblad: §47, reden: geen formules in de totaalregel}
+- {tabblad: Installaties, reden: geen formules in de totaalregel}
+calculatieregels:
+- id: '12.01'
+  tabblad: §12
+  titel: Ontgraven
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '14.01'
+  tabblad: §14
+  titel: Buitenriolering
+  titelcel: A2
+  kopregel: 3
+  omschrijvingcel: A4
+  invoerrijen: [4, 5, 6, 7]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H4, totaalcel: G9}
+  waarschuwingen: []
+- id: '15.01'
+  tabblad: §15
+  titel: Brekerpuin
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '15.02'
+  tabblad: §15
+  titel: Zand onder brekerpuin
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '15.03'
+  tabblad: §15
+  titel: Bestratingszand onder straatwerk
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '15.04'
+  tabblad: §15
+  titel: Doek onder straatzand
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '15.05'
+  tabblad: §15
+  titel: Aanbrengen bestrating
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '15.06'
+  tabblad: §15
+  titel: Herstellen bestrating
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '15.07'
+  tabblad: §15
+  titel: Stelconplaten t.p.v. overheaddeuren
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66, 68, 69, 70, 71]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G73}
+  waarschuwingen: []
+- id: '17.01'
+  tabblad: §17
+  titel: Spijlenhekwerk
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '17.02'
+  tabblad: §17
+  titel: Gaashekwerk
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '20.01'
+  tabblad: §20
+  titel: Betonpalen
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  - {naam: tot., kolom: I, eenheidcel: J3, totaalcel: I8}
+  waarschuwingen: []
+- id: '20.02'
+  tabblad: §20
+  titel: Stalen buispalen
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  - {naam: tot., kolom: I, eenheidcel: J13, totaalcel: I18}
+  waarschuwingen: []
+- id: '20.03'
+  tabblad: §20
+  titel: Vibro-palen
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '20.04'
+  tabblad: §20
+  titel: Betonschroefpalen
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '21.01'
+  tabblad: §21
+  titel: Werkvloer van beton
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '21.02'
+  tabblad: §21
+  titel: Aanbrengen werkvloer van noppenfolie
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '21.03'
+  tabblad: §21
+  titel: Vloerisolatie
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26, 27, 28, 29, 30]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G32}
+  waarschuwingen: []
+- id: '21.04'
+  tabblad: §21
+  titel: PS-fundering
+  titelcel: A35
+  kopregel: 36
+  omschrijvingcel: A37
+  invoerrijen: [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal, M: Wap.}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H37, totaalcel: G55, verliescel: G54}
+  - {naam: beton, kolom: J, eenheidcel: K37, totaalcel: J55, verliescel: J54}
+  - {naam: tot. Wap., kolom: N, eenheidcel: O37, totaalcel: N55, verliescel: N54}
+  waarschuwingen: []
+- id: '21.05'
+  tabblad: §21
+  titel: Traditionele bekisting
+  titelcel: A58
+  kopregel: 59
+  omschrijvingcel: A60
+  invoerrijen: [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal, I: aantal, P: Wap.}
+  hoeveelheden:
+  - {naam: tot. M1, kolom: G, eenheidcel: H60, totaalcel: G78, verliescel: G77}
+  - {naam: tot. M2, kolom: J, eenheidcel: K60, totaalcel: J78, verliescel: J77}
+  - {naam: beton, kolom: M, eenheidcel: N60, totaalcel: M78, verliescel: M77}
+  - {naam: tot. Wap., kolom: Q, eenheidcel: R60, totaalcel: Q78, verliescel: Q77}
+  waarschuwingen:
+  - 'Kolom J: formules verschillen binnen het blok: J60 ''=I60*G60*D60'' / J61:J74 ''=G61*E61*D61''.'
+  - Invoerkolom P ('Wap.') wordt in geen enkele formule gebruikt.
+- id: '21.06'
+  tabblad: §21
+  titel: Aanbrengen opstorting
+  titelcel: A81
+  kopregel: 82
+  omschrijvingcel: A83
+  invoerrijen: [83, 84, 85, 86, 87, 89, 90, 91, 92, 93]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal, M: Wap.}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H84, totaalcel: G95}
+  - {naam: beton, kolom: J, eenheidcel: K83, totaalcel: J95}
+  - {naam: tot. Wap., kolom: N, eenheidcel: O83, totaalcel: N95}
+  waarschuwingen: []
+- id: '21.07'
+  tabblad: §21
+  titel: Aanbrengen i.h.w.g betonvloer
+  titelcel: A98
+  kopregel: 99
+  omschrijvingcel: A100
+  invoerrijen: [100, 101, 102, 103, 104, 105]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H100, totaalcel: G107}
+  waarschuwingen: []
+- id: '21.08'
+  tabblad: §21
+  titel: wapening/beton
+  titelcel: A110
+  kopregel: 109
+  omschrijvingcel: A110
+  invoerrijen: [110, 111, 112, 113]
+  invoerkolommen: {B: nr., C: lengte, D: hoogte, E: breedte, F: aantal, M: Wap.}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H110, totaalcel: G117, verliescel: G116}
+  - {naam: beton, kolom: J, eenheidcel: K110, totaalcel: J117, verliescel: J116}
+  - {naam: tot. Wap., kolom: N, eenheidcel: O110, totaalcel: N117, verliescel: N116}
+  waarschuwingen:
+  - Geen titel boven de kopregel (rij 109); titel genomen uit A110.
+- id: '21.09'
+  tabblad: §21
+  titel: Paalkopverzwaringen
+  titelcel: A120
+  kopregel: 121
+  omschrijvingcel: A122
+  invoerrijen: [122, 123, 124, 125]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H122, totaalcel: G127}
+  waarschuwingen: []
+- id: '21.10'
+  tabblad: §21
+  titel: Monolytische betonvloer
+  titelcel: A130
+  kopregel: 131
+  omschrijvingcel: A132
+  invoerrijen: [132, 133, 134, 135]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H132, totaalcel: G137}
+  waarschuwingen: []
+- id: '21.11'
+  tabblad: §21
+  titel: Staalvezelbetonvloer
+  titelcel: A140
+  kopregel: 141
+  omschrijvingcel: A142
+  invoerrijen: [142, 143, 144, 145]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H142, totaalcel: G147}
+  waarschuwingen: []
+- id: '21.12'
+  tabblad: §21
+  titel: Dilataties in betonvloer
+  titelcel: A150
+  kopregel: 151
+  omschrijvingcel: A152
+  invoerrijen: [152, 153, 154, 155]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H152, totaalcel: G157}
+  waarschuwingen: []
+- id: '21.13'
+  tabblad: §21
+  titel: Ontkisten beton
+  titelcel: A160
+  kopregel: 161
+  omschrijvingcel: A162
+  invoerrijen: [162, 163, 164, 165]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H162, totaalcel: G167}
+  waarschuwingen: []
+- id: '21.14'
+  tabblad: §21
+  titel: Aanbrengen doorvoeringen
+  titelcel: A170
+  kopregel: 171
+  omschrijvingcel: A172
+  invoerrijen: [172, 173, 174, 175]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H172, totaalcel: G177}
+  waarschuwingen: []
+- id: '21.15'
+  tabblad: §21
+  titel: Stekankers t.b.v. kolommen
+  titelcel: A180
+  kopregel: 181
+  omschrijvingcel: A182
+  invoerrijen: [182, 183, 184, 185]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H182, totaalcel: G187}
+  waarschuwingen: []
+- id: '21.16'
+  tabblad: §21
+  titel: EPS-isolatie tegen wanden onder MV
+  titelcel: A190
+  kopregel: 191
+  omschrijvingcel: A192
+  invoerrijen: [192, 193, 194, 195]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H192, totaalcel: G197}
+  waarschuwingen: []
+- id: '21.17'
+  tabblad: §21
+  titel: Aanbrengen stalen strip t.p.v. aansl. Wand op vloer
+  titelcel: A200
+  kopregel: 201
+  omschrijvingcel: A202
+  invoerrijen: [202, 203, 204, 205]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H202, totaalcel: G207}
+  waarschuwingen: []
+- id: '21.18'
+  tabblad: §21
+  titel: Kelderwanden van beton
+  titelcel: A210
+  kopregel: 211
+  omschrijvingcel: A212
+  invoerrijen: [212, 213, 214, 215]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal, M: Wap.}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H212, totaalcel: G217}
+  - {naam: beton, kolom: J, eenheidcel: K212, totaalcel: J217}
+  - {naam: tot. Wap., kolom: N, eenheidcel: O212, totaalcel: N217}
+  waarschuwingen:
+  - Totaalregel H217 noemt eenheid 'm1', invoerrijen 'm2'.
+  - Totaalformule G217 telt G203:G216, maar de invoerrijen van dit blok zijn G212:G215.
+- id: '21.19'
+  tabblad: §21
+  titel: Afwerken konusgaten
+  titelcel: A220
+  kopregel: 221
+  omschrijvingcel: A222
+  invoerrijen: [222, 223, 224, 225]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H222, totaalcel: G227}
+  waarschuwingen: []
+- id: '21.20'
+  tabblad: §21
+  titel: Balkwapening
+  titelcel: A230
+  kopregel: 231
+  omschrijvingcel: A232
+  invoerrijen: [232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: aantal, E: totaal m1, F: kg/m1}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H232, totaalcel: G248}
+  waarschuwingen: []
+- id: '21.21'
+  tabblad: §21
+  titel: Vloerwapening netten
+  titelcel: A251
+  kopregel: 252
+  omschrijvingcel: A253
+  invoerrijen: [253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: breedte, E: aantal, F: totaal m2, G: kg/m2}
+  hoeveelheden:
+  - {naam: tot., kolom: H, eenheidcel: I253, totaalcel: H269}
+  waarschuwingen: []
+- id: '21.22'
+  tabblad: §21
+  titel: Bijlegwapening vloer
+  titelcel: A272
+  kopregel: 273
+  omschrijvingcel: A274
+  invoerrijen: [274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: aantal, E: totaal m1, F: kg/m1}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H274, totaalcel: G290}
+  waarschuwingen: []
+- id: '22.01'
+  tabblad: §22
+  titel: Aanbrengen gevelmetselwerk
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G10}
+  waarschuwingen: []
+- id: '22.02'
+  tabblad: §22
+  titel: Opmetselen fundering dik …
+  titelcel: A13
+  kopregel: 14
+  omschrijvingcel: A15
+  invoerrijen: [15, 16, 17, 18, 19, 20]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H15, totaalcel: G22}
+  waarschuwingen: []
+- id: '22.03'
+  tabblad: §22
+  titel: Kalkzandsteen lijmblokken dik …
+  titelcel: A25
+  kopregel: 26
+  omschrijvingcel: A27
+  invoerrijen: [27, 28, 29, 30, 31, 32]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H27, totaalcel: G34}
+  waarschuwingen: []
+- id: '22.04'
+  tabblad: §22
+  titel: Kalkzandsteen lijmelementen dik …
+  titelcel: A37
+  kopregel: 38
+  omschrijvingcel: A39
+  invoerrijen: [39, 40, 41, 42, 43, 44]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H39, totaalcel: G46}
+  waarschuwingen: []
+- id: '22.05'
+  tabblad: §22
+  titel: Kalkzandsteen vellingblokken dik …
+  titelcel: A49
+  kopregel: 50
+  omschrijvingcel: A51
+  invoerrijen: [51, 52, 53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H51, totaalcel: G58}
+  waarschuwingen: []
+- id: '22.06'
+  tabblad: §22
+  titel: Gibo binnenwanden
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '22.07'
+  tabblad: §22
+  titel: MBI wanden
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '22.08'
+  tabblad: §22
+  titel: Poriso binnenwanden
+  titelcel: A81
+  kopregel: 82
+  omschrijvingcel: A83
+  invoerrijen: [83, 84, 85, 86]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H83, totaalcel: G88}
+  waarschuwingen: []
+- id: '22.09'
+  tabblad: §22
+  titel: Ytong binnenwanden
+  titelcel: A91
+  kopregel: 92
+  omschrijvingcel: A93
+  invoerrijen: [93, 94, 95, 96]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H93, totaalcel: G98}
+  waarschuwingen: []
+- id: '22.10'
+  tabblad: §22
+  titel: Snelbouwbaksteen
+  titelcel: A101
+  kopregel: 102
+  omschrijvingcel: A103
+  invoerrijen: [103, 104, 105, 106]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H103, totaalcel: G108}
+  waarschuwingen: []
+- id: '22.11'
+  tabblad: §22
+  titel: Gemetselde schoorsteen
+  titelcel: A111
+  kopregel: 112
+  omschrijvingcel: A113
+  invoerrijen: [113, 114, 115, 116]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H113, totaalcel: G118}
+  waarschuwingen: []
+- id: '22.12'
+  tabblad: §22
+  titel: Raamdorpelstenen
+  titelcel: A121
+  kopregel: 122
+  omschrijvingcel: A123
+  invoerrijen: [123, 124, 125, 126]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H123, totaalcel: G128}
+  waarschuwingen: []
+- id: '22.13'
+  tabblad: §22
+  titel: Glazen bouwstenen
+  titelcel: A131
+  kopregel: 132
+  omschrijvingcel: A133
+  invoerrijen: [133, 134, 135, 136]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H133, totaalcel: G138}
+  waarschuwingen: []
+- id: '22.14'
+  tabblad: §22
+  titel: Cellenbeton koudebrugonderbreking
+  titelcel: A141
+  kopregel: 142
+  omschrijvingcel: A143
+  invoerrijen: [143, 144, 145, 146]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H143, totaalcel: G148}
+  waarschuwingen: []
+- id: '22.15'
+  tabblad: §22
+  titel: Dilatatievoegen
+  titelcel: A151
+  kopregel: 152
+  omschrijvingcel: A153
+  invoerrijen: [153, 154, 155, 156]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H153, totaalcel: G158}
+  waarschuwingen: []
+- id: '22.16'
+  tabblad: §22
+  titel: Murfor boven kozijnen
+  titelcel: A161
+  kopregel: 162
+  omschrijvingcel: A163
+  invoerrijen: [163, 164, 165, 166]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H163, totaalcel: G168}
+  waarschuwingen: []
+- id: '22.17'
+  tabblad: §22
+  titel: Metselwerkondersteuning (halfen)
+  titelcel: A171
+  kopregel: 172
+  omschrijvingcel: A173
+  invoerrijen: [173, 174, 175, 176]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H173, totaalcel: G178}
+  waarschuwingen: []
+- id: '22.18'
+  tabblad: §22
+  titel: Stalen lateien
+  titelcel: A181
+  kopregel: 182
+  omschrijvingcel: A183
+  invoerrijen: [183, 184, 185, 186]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H183, totaalcel: G188}
+  waarschuwingen: []
+- id: '22.19'
+  tabblad: §22
+  titel: Harde isolatie op fundering
+  titelcel: A191
+  kopregel: 192
+  omschrijvingcel: A193
+  invoerrijen: [193, 194, 195, 196]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H193, totaalcel: G198}
+  waarschuwingen: []
+- id: '22.20'
+  tabblad: §22
+  titel: DPC folie op fundering
+  titelcel: A201
+  kopregel: 202
+  omschrijvingcel: A203
+  invoerrijen: [203, 204, 205, 206]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H203, totaalcel: G208}
+  waarschuwingen: []
+- id: '22.21'
+  tabblad: §22
+  titel: Kunststof slabbe boven kozijnen
+  titelcel: A211
+  kopregel: 212
+  omschrijvingcel: A213
+  invoerrijen: [213, 214, 215, 216]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H213, totaalcel: G218}
+  waarschuwingen: []
+- id: '22.22'
+  tabblad: §22
+  titel: Vloerventilatierooster
+  titelcel: A221
+  kopregel: 222
+  omschrijvingcel: A223
+  invoerrijen: [223, 224, 225, 226]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H223, totaalcel: G228}
+  waarschuwingen: []
+- id: '22.23'
+  tabblad: §22
+  titel: Loden loketten
+  titelcel: A231
+  kopregel: 232
+  omschrijvingcel: A233
+  invoerrijen: [233, 234, 235, 236]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H233, totaalcel: G238}
+  waarschuwingen: []
+- id: '22.24'
+  tabblad: §22
+  titel: Loden vochtkeringsstrook
+  titelcel: A241
+  kopregel: 242
+  omschrijvingcel: A243
+  invoerrijen: [243, 244, 245, 246]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H243, totaalcel: G248}
+  waarschuwingen: []
+- id: '22.25'
+  tabblad: §22
+  titel: Afkwastlaag op metselwerk
+  titelcel: A251
+  kopregel: 252
+  omschrijvingcel: A253
+  invoerrijen: [253, 254, 255, 256]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H253, totaalcel: G258}
+  waarschuwingen: []
+- id: '22.26'
+  tabblad: §22
+  titel: Toeslag rond metselwerk/lijmwerk
+  titelcel: A261
+  kopregel: 262
+  omschrijvingcel: A263
+  invoerrijen: [263, 264, 265, 266]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H263, totaalcel: G268}
+  waarschuwingen: []
+- id: '22.27'
+  tabblad: §22
+  titel: Toeslag 2-zijdig schoonwerk
+  titelcel: A271
+  kopregel: 272
+  omschrijvingcel: A273
+  invoerrijen: [273, 274, 275, 276]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H273, totaalcel: G278}
+  waarschuwingen: []
+- id: '22.28'
+  tabblad: §22
+  titel: Rollagen
+  titelcel: A281
+  kopregel: 282
+  omschrijvingcel: A283
+  invoerrijen: [283, 284, 285, 286]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H283, totaalcel: G288}
+  waarschuwingen: []
+- id: '22.29'
+  tabblad: §22
+  titel: Steigerwerk
+  titelcel: A291
+  kopregel: 292
+  omschrijvingcel: A293
+  invoerrijen: [293, 294, 295, 296, 298, 299, 300, 301]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, totaalcel: G304}
+  waarschuwingen:
+  - 'Kolom G: gemengde eenheden in de invoerrijen (m1, m2); totaal G304 telt ze op.'
+  - 'Kolom G: formules verschillen binnen het blok: G293:G296 ''=F293*D293*C293'' / G298:G301 ''=F298*C298''.'
+- id: '23.01'
+  tabblad: §23
+  titel: PS-isolatievloer
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '23.02'
+  tabblad: §23
+  titel: Geïsoleerde kanaalplaatvloer
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '23.03'
+  tabblad: §23
+  titel: Kanaalplaatvloer
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '23.04'
+  tabblad: §23
+  titel: Aanbrengen druklaag
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '23.05'
+  tabblad: §23
+  titel: Betonnen trappen
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '23.06'
+  tabblad: §23
+  titel: Aanbrengen ribcasettevloer
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '23.07'
+  tabblad: §23
+  titel: Aanbrengen breedplaatvloer
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '23.08'
+  tabblad: §23
+  titel: Betonnen lateien boven kozijnen binnen
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '23.09'
+  tabblad: §23
+  titel: Betonnen lateien boven kozijnen spouw
+  titelcel: A81
+  kopregel: 82
+  omschrijvingcel: A83
+  invoerrijen: [83, 84, 85, 86]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H83, totaalcel: G88}
+  waarschuwingen: []
+- id: '23.10'
+  tabblad: §23
+  titel: Betonnen spek/ afdekbanden
+  titelcel: A91
+  kopregel: 92
+  omschrijvingcel: A93
+  invoerrijen: [93, 94, 95, 96]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H93, totaalcel: G98}
+  waarschuwingen: []
+- id: '23.11'
+  tabblad: §23
+  titel: Betonnen kantplanken
+  titelcel: A101
+  kopregel: 102
+  omschrijvingcel: A103
+  invoerrijen: [103, 104, 105, 106]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H103, totaalcel: G108}
+  waarschuwingen: []
+- id: '23.12'
+  tabblad: §23
+  titel: Betonnen kolommen
+  titelcel: A111
+  kopregel: 112
+  omschrijvingcel: A113
+  invoerrijen: [113, 114, 115, 116]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H113, totaalcel: G118}
+  waarschuwingen: []
+- id: '24.01'
+  tabblad: §24
+  titel: Timmerwerkzaamheden
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: null
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '24.02'
+  tabblad: §24
+  titel: Timmerwerkzaamheden
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: null
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '24.03'
+  tabblad: §24
+  titel: Timmerwerkzaamheden
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: null
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '25.01'
+  tabblad: §25
+  titel: Staalconstructie
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: null
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: aantal, E: totaal m1, F: kg/m1}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G21, verliescel: G20}
+  waarschuwingen: []
+- id: '25.02'
+  tabblad: §25
+  titel: Ondersabelen kolommen
+  titelcel: A24
+  kopregel: 25
+  omschrijvingcel: A26
+  invoerrijen: [26, 27, 28, 29]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H26, totaalcel: G31}
+  waarschuwingen: []
+- id: '25.03'
+  tabblad: §25
+  titel: Vullen stalen kolommen met beton
+  titelcel: A34
+  kopregel: 35
+  omschrijvingcel: A36
+  invoerrijen: [36, 37, 38, 39]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H36, totaalcel: G41}
+  waarschuwingen: []
+- id: '25.04'
+  tabblad: §25
+  titel: Aanbrengen chemische ankers
+  titelcel: A44
+  kopregel: 45
+  omschrijvingcel: A46
+  invoerrijen: [46, 47, 48, 49]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H46, totaalcel: G51}
+  waarschuwingen: []
+- id: '26.01'
+  tabblad: §26
+  titel: Aanbrengen prefab schoorsteen
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '30.01'
+  tabblad: §30
+  titel: Stelkozijnen voor aluminium/kunststof koz.
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '30.02'
+  tabblad: §30
+  titel: Aluminium kozijnen
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  - {naam: aantal, kolom: F, totaalcel: F18}
+  waarschuwingen:
+  - 'Kolom F (''aantal''): totaal F18 telt de invoer op; eenheid ontbreekt in het template.'
+- id: '30.03'
+  tabblad: §30
+  titel: Aluminium vliesgevels
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '30.04'
+  tabblad: §30
+  titel: Houten buitenkozijnen
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  - {naam: aantal, kolom: F, totaalcel: F38}
+  waarschuwingen:
+  - 'Kolom F (''aantal''): totaal F38 telt de invoer op; eenheid ontbreekt in het template.'
+- id: '30.05'
+  tabblad: §30
+  titel: Afhangen deuren in houten buitenkozijnen
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '30.06'
+  tabblad: §30
+  titel: Overheaddeur
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '30.07'
+  tabblad: §30
+  titel: Houten binnenkozijnen
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  - {naam: aantal, kolom: F, totaalcel: F68}
+  waarschuwingen:
+  - 'Kolom F (''aantal''): totaal F68 telt de invoer op; eenheid ontbreekt in het template.'
+- id: '30.08'
+  tabblad: §30
+  titel: Houten montage kozijn
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '30.09'
+  tabblad: §30
+  titel: Binnendeuren in houten kozijnen
+  titelcel: A81
+  kopregel: 82
+  omschrijvingcel: A83
+  invoerrijen: [83, 84, 85, 86]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H83, totaalcel: G88}
+  waarschuwingen: []
+- id: '30.10'
+  tabblad: §30
+  titel: Hardglazen deur
+  titelcel: A91
+  kopregel: 92
+  omschrijvingcel: A93
+  invoerrijen: [93, 94, 95, 96]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H93, totaalcel: G98}
+  waarschuwingen: []
+- id: '30.11'
+  tabblad: §30
+  titel: Ventilatierooster
+  titelcel: A101
+  kopregel: 102
+  omschrijvingcel: A103
+  invoerrijen: [103, 104, 105, 106]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H103, totaalcel: G108}
+  waarschuwingen: []
+- id: '30.12'
+  tabblad: §30
+  titel: Aanbrengen panelenschuifwand
+  titelcel: A111
+  kopregel: 112
+  omschrijvingcel: A113
+  invoerrijen: [113, 114, 115, 116]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H113, totaalcel: G118}
+  waarschuwingen: []
+- id: '30.13'
+  tabblad: §30
+  titel: Hang & sluitwerk t.b.v. binnendeuren
+  titelcel: A121
+  kopregel: 122
+  omschrijvingcel: A123
+  invoerrijen: [123, 124, 125, 126]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H123, totaalcel: G128}
+  waarschuwingen: []
+- id: '30.14'
+  tabblad: §30
+  titel: Aanbrengen vingerbeveiliging
+  titelcel: A131
+  kopregel: 132
+  omschrijvingcel: A133
+  invoerrijen: [133, 134, 135, 136]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H133, totaalcel: G138}
+  waarschuwingen: []
+- id: '30.15'
+  tabblad: §30
+  titel: Schopplaten
+  titelcel: A141
+  kopregel: 142
+  omschrijvingcel: A143
+  invoerrijen: [143, 144, 145, 146]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H143, totaalcel: G148}
+  waarschuwingen: []
+- id: '30.16'
+  tabblad: §30
+  titel: Lichtkoepels
+  titelcel: A151
+  kopregel: 152
+  omschrijvingcel: A153
+  invoerrijen: [153, 154, 155, 156]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H153, totaalcel: G158}
+  waarschuwingen: []
+- id: '30.17'
+  tabblad: §30
+  titel: Lichtstraten
+  titelcel: A161
+  kopregel: 162
+  omschrijvingcel: A163
+  invoerrijen: [163, 164, 165, 166]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H163, totaalcel: G168}
+  waarschuwingen: []
+- id: '30.18'
+  tabblad: §30
+  titel: Aanbrengen dakramen
+  titelcel: A171
+  kopregel: 172
+  omschrijvingcel: A173
+  invoerrijen: [173, 174, 175, 176]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H173, totaalcel: G178}
+  waarschuwingen: []
+- id: '30.19'
+  tabblad: §30
+  titel: dakluik
+  titelcel: A181
+  kopregel: 182
+  omschrijvingcel: A183
+  invoerrijen: [183, 184, 185, 186]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H183, totaalcel: G188}
+  waarschuwingen: []
+- id: '30.20'
+  tabblad: §30
+  titel: Garagedeur
+  titelcel: A191
+  kopregel: 192
+  omschrijvingcel: A193
+  invoerrijen: [193, 194, 195, 196]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H193, totaalcel: G198}
+  waarschuwingen: []
+- id: '30.21'
+  tabblad: §30
+  titel: Trafopui
+  titelcel: A201
+  kopregel: 202
+  omschrijvingcel: A203
+  invoerrijen: [203, 204, 205, 206]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H203, totaalcel: G208}
+  waarschuwingen: []
+- id: '31.01'
+  tabblad: §31
+  titel: Gevelbeplating
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G19}
+  waarschuwingen: []
+- id: '31.02'
+  tabblad: §31
+  titel: Lichtstraatopstand
+  titelcel: A22
+  kopregel: 23
+  omschrijvingcel: A24
+  invoerrijen: [24, 25, 26, 27]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H24, totaalcel: G29}
+  waarschuwingen: []
+- id: '31.03'
+  tabblad: §31
+  titel: Dakbeplating
+  titelcel: A32
+  kopregel: 33
+  omschrijvingcel: A34
+  invoerrijen: [34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H34, totaalcel: G45}
+  waarschuwingen: []
+- id: '31.04'
+  tabblad: §31
+  titel: Gezette staalplaat op dak
+  titelcel: A48
+  kopregel: 49
+  omschrijvingcel: A50
+  invoerrijen: [50, 51, 52, 53]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H50, totaalcel: G55}
+  waarschuwingen: []
+- id: '31.05'
+  tabblad: §31
+  titel: Trespa buitenplafond
+  titelcel: A58
+  kopregel: 59
+  omschrijvingcel: A60
+  invoerrijen: [60, 61, 62, 63]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H60, totaalcel: G65}
+  waarschuwingen: []
+- id: '31.06'
+  tabblad: §31
+  titel: Trespa gevelbekleding
+  titelcel: A68
+  kopregel: 69
+  omschrijvingcel: A70
+  invoerrijen: [70, 71, 72, 73]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H70, totaalcel: G75}
+  waarschuwingen: []
+- id: '32.01'
+  tabblad: §32
+  titel: Stalen trap
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '32.02'
+  tabblad: §32
+  titel: Stalen spiltrap
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '32.03'
+  tabblad: §32
+  titel: Hardhouten trap
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '32.04'
+  tabblad: §32
+  titel: Vuren trap
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '32.05'
+  tabblad: §32
+  titel: Traphekwerk op vloerrand hardhouten trap
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '32.06'
+  tabblad: §32
+  titel: Traphekwerk op vloerrand vuren trap
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '32.07'
+  tabblad: §32
+  titel: Muurleuning t.b.v. hardhouten trap
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '32.08'
+  tabblad: §32
+  titel: Muurleuning t.b.v. vuren trap
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '32.09'
+  tabblad: §32
+  titel: Vlizotrappen
+  titelcel: A81
+  kopregel: 82
+  omschrijvingcel: A83
+  invoerrijen: [83, 84, 85, 86]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H83, totaalcel: G88}
+  waarschuwingen: []
+- id: '33.01'
+  tabblad: §33
+  titel: Bitumieuze dakbedekking
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G14}
+  waarschuwingen: []
+- id: '33.02'
+  tabblad: §33
+  titel: Kunststof dakbedekking
+  titelcel: A17
+  kopregel: 18
+  omschrijvingcel: A19
+  invoerrijen: [19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H19, totaalcel: G30}
+  waarschuwingen: []
+- id: '33.03'
+  tabblad: §33
+  titel: Cannelurevulling
+  titelcel: A33
+  kopregel: 34
+  omschrijvingcel: A35
+  invoerrijen: [35, 36, 37, 38]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H35, totaalcel: G40}
+  waarschuwingen: []
+- id: '33.04'
+  tabblad: §33
+  titel: APP gebrand op fundering
+  titelcel: A43
+  kopregel: 44
+  omschrijvingcel: A45
+  invoerrijen: [45, 46, 47, 48]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H45, totaalcel: G50}
+  waarschuwingen: []
+- id: '33.05'
+  tabblad: §33
+  titel: Keramische dakpannen
+  titelcel: A53
+  kopregel: 54
+  omschrijvingcel: A55
+  invoerrijen: [55, 56, 57, 58]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H55, totaalcel: G60}
+  waarschuwingen: []
+- id: '33.06'
+  tabblad: §33
+  titel: Betonnen dakpannen
+  titelcel: A63
+  kopregel: 64
+  omschrijvingcel: A65
+  invoerrijen: [65, 66, 67, 68]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H65, totaalcel: G70}
+  waarschuwingen: []
+- id: '34.01'
+  tabblad: §34
+  titel: Isolatieglas in houten buitenkozijnen
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '34.02'
+  tabblad: §34
+  titel: Enkelglas
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '34.03'
+  tabblad: §34
+  titel: 30 minuten brandwerend glas
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '34.04'
+  tabblad: §34
+  titel: 60 minuten brandwerend glas
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '34.05'
+  tabblad: §34
+  titel: Spiegeldraadglas
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '34.06'
+  tabblad: §34
+  titel: Veiligheidsglas tot 1200 + vloer
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '34.07'
+  tabblad: §34
+  titel: Gelaagd glas
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '34.08'
+  tabblad: §34
+  titel: Veiligheidsglas tot 1200 + vloer
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '35.01'
+  tabblad: §35
+  titel: Holonite vensterbanken
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '35.02'
+  tabblad: §35
+  titel: Natuursteen vensterbanken
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '35.03'
+  tabblad: §35
+  titel: Holonite binnendeurdorpels
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '35.04'
+  tabblad: §35
+  titel: Hardstenen binnendeurdorpels
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '35.05'
+  tabblad: §35
+  titel: Hardstenen buitendeurdorpels
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '35.06'
+  tabblad: §35
+  titel: Hardstenen neuten
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '35.07'
+  tabblad: §35
+  titel: Natuurstenen vloer
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '35.08'
+  tabblad: §35
+  titel: Natuurstenen bekleding gevel
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '36.01'
+  tabblad: §36
+  titel: Aanbrengen kitwerk tegelwerk
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '36.02'
+  tabblad: §36
+  titel: Kitwerk rond sanitair + aanrecht
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '36.03'
+  tabblad: §36
+  titel: Kitwerk tussen prefab betonnen elementen
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '36.04'
+  tabblad: §36
+  titel: Schuimband rondom stelkozijnen
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '36.05'
+  tabblad: §36
+  titel: Kitwerk rondom buitenkozijnen
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '36.06'
+  tabblad: §36
+  titel: Kitwerk dilatatievoegen
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '37.01'
+  tabblad: §37
+  titel: Na-isolatie
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: null
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, totaalcel: G8}
+  waarschuwingen:
+  - 'Kolom G: eenheid ontbreekt in het template.'
+- id: '38.01'
+  tabblad: §38
+  titel: Screens handbediend
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '38.02'
+  tabblad: §38
+  titel: Screens elektrisch
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '38.03'
+  tabblad: §38
+  titel: Rolluik handbediend
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '38.04'
+  tabblad: §38
+  titel: Rolluik elektrisch
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '38.05'
+  tabblad: §38
+  titel: Uitval zonnescherm
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '40.01'
+  tabblad: §40
+  titel: Aanwerken sleuven + naden
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '40.02'
+  tabblad: §40
+  titel: Affilmen kalkzandsteen lijmblokken
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G24}
+  waarschuwingen: []
+- id: '40.03'
+  tabblad: §40
+  titel: B12 achter tegelwerk
+  titelcel: A27
+  kopregel: 28
+  omschrijvingcel: A29
+  invoerrijen: [29, 30, 31, 32]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H29, totaalcel: G34}
+  waarschuwingen: []
+- id: '40.04'
+  tabblad: §40
+  titel: Filmlaag op MS-wanden
+  titelcel: A37
+  kopregel: 38
+  omschrijvingcel: A39
+  invoerrijen: [39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H39, totaalcel: G50}
+  waarschuwingen: []
+- id: '40.05'
+  tabblad: §40
+  titel: Blauwpleisterwerk
+  titelcel: A53
+  kopregel: 54
+  omschrijvingcel: A55
+  invoerrijen: [55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H55, totaalcel: G66}
+  waarschuwingen: []
+- id: '40.06'
+  tabblad: §40
+  titel: Behangklaar maken betonnen kolommen
+  titelcel: A69
+  kopregel: 70
+  omschrijvingcel: A71
+  invoerrijen: [71, 72, 73, 74]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H71, totaalcel: G76}
+  waarschuwingen: []
+- id: '40.07'
+  tabblad: §40
+  titel: Toeslag stucwerk ronde wand
+  titelcel: A79
+  kopregel: 80
+  omschrijvingcel: A81
+  invoerrijen: [81, 82, 83, 84]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H81, totaalcel: G86}
+  waarschuwingen: []
+- id: '40.08'
+  tabblad: §40
+  titel: Toeslag wanden sausklaar
+  titelcel: A89
+  kopregel: 90
+  omschrijvingcel: A91
+  invoerrijen: [91, 92, 93, 94]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H91, totaalcel: G96}
+  waarschuwingen: []
+- id: '40.09'
+  tabblad: §40
+  titel: Spuitwerk op wanden
+  titelcel: A99
+  kopregel: 100
+  omschrijvingcel: A101
+  invoerrijen: [101, 102, 103, 104]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H101, totaalcel: G106}
+  waarschuwingen: []
+- id: '40.10'
+  tabblad: §40
+  titel: Spuitwerk op plafond
+  titelcel: A109
+  kopregel: 110
+  omschrijvingcel: A111
+  invoerrijen: [111, 112, 113, 114]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H111, totaalcel: G116}
+  waarschuwingen: []
+- id: '40.11'
+  tabblad: §40
+  titel: Stucwerk op plafond
+  titelcel: A119
+  kopregel: 120
+  omschrijvingcel: A121
+  invoerrijen: [121, 122, 123, 124]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H121, totaalcel: G126}
+  waarschuwingen: []
+- id: '40.12'
+  tabblad: §40
+  titel: Schuurwerk op wanden
+  titelcel: A129
+  kopregel: 130
+  omschrijvingcel: A131
+  invoerrijen: [131, 132, 133, 134]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H131, totaalcel: G136}
+  waarschuwingen: []
+- id: '40.13'
+  tabblad: §40
+  titel: Schuurwerk op plafond
+  titelcel: A139
+  kopregel: 140
+  omschrijvingcel: A141
+  invoerrijen: [141, 142, 143, 144]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H141, totaalcel: G146}
+  waarschuwingen: []
+- id: '40.14'
+  tabblad: §40
+  titel: Hoeksperen
+  titelcel: A149
+  kopregel: 150
+  omschrijvingcel: A151
+  invoerrijen: [151, 152, 153, 154]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H151, totaalcel: G156}
+  waarschuwingen: []
+- id: '40.15'
+  tabblad: §40
+  titel: Stucstopprofielen
+  titelcel: A159
+  kopregel: 160
+  omschrijvingcel: A161
+  invoerrijen: [161, 162, 163, 164]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H161, totaalcel: G166}
+  waarschuwingen: []
+- id: '40.16'
+  tabblad: §40
+  titel: Wapeningsgaas
+  titelcel: A169
+  kopregel: 170
+  omschrijvingcel: A171
+  invoerrijen: [171, 172, 173, 174]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H171, totaalcel: G176}
+  waarschuwingen: []
+- id: '40.17'
+  tabblad: §40
+  titel: Buitengevelisolatie
+  titelcel: A179
+  kopregel: 180
+  omschrijvingcel: A181
+  invoerrijen: [181, 182, 183, 184, 185, 186, 187, 188, 189, 190]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H181, totaalcel: G192}
+  waarschuwingen: []
+- id: '40.18'
+  tabblad: §40
+  titel: Spachtelputz
+  titelcel: A195
+  kopregel: 196
+  omschrijvingcel: A197
+  invoerrijen: [197, 198, 199, 200]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H197, totaalcel: G202}
+  waarschuwingen: []
+- id: '41.01'
+  tabblad: §41
+  titel: Wandtegelwerk
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G19}
+  waarschuwingen: []
+- id: '41.02'
+  tabblad: §41
+  titel: Vloertegelwerk
+  titelcel: A22
+  kopregel: 23
+  omschrijvingcel: A24
+  invoerrijen: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H24, totaalcel: G40}
+  waarschuwingen: []
+- id: '41.03'
+  tabblad: §41
+  titel: Plinttegels
+  titelcel: A43
+  kopregel: 44
+  omschrijvingcel: A45
+  invoerrijen: [45, 46, 47, 48]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H45, totaalcel: G50}
+  waarschuwingen: []
+- id: '41.04'
+  tabblad: §41
+  titel: Striptegels
+  titelcel: A53
+  kopregel: 54
+  omschrijvingcel: A55
+  invoerrijen: [55, 56, 57, 58]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H55, totaalcel: G60}
+  waarschuwingen: []
+- id: '41.05'
+  tabblad: §41
+  titel: Toeslag wandtegels diagonaal
+  titelcel: A63
+  kopregel: 64
+  omschrijvingcel: A65
+  invoerrijen: [65, 66, 67, 68]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H65, totaalcel: G70}
+  waarschuwingen: []
+- id: '41.06'
+  tabblad: §41
+  titel: Toeslag vloertegels diagonaal
+  titelcel: A73
+  kopregel: 74
+  omschrijvingcel: A75
+  invoerrijen: [75, 76, 77, 78]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H75, totaalcel: G80}
+  waarschuwingen: []
+- id: '41.07'
+  tabblad: §41
+  titel: Hoekprofielen t.p.v. uitwendige hoeken
+  titelcel: A83
+  kopregel: 84
+  omschrijvingcel: A85
+  invoerrijen: [85, 86, 87, 88]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H85, totaalcel: G90}
+  waarschuwingen: []
+- id: '41.08'
+  tabblad: §41
+  titel: Kimband + pasta
+  titelcel: A93
+  kopregel: 94
+  omschrijvingcel: A95
+  invoerrijen: [95, 96, 97, 98]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H95, totaalcel: G100}
+  waarschuwingen: []
+- id: '42.01'
+  tabblad: §42
+  titel: Zandcementdekvloer dik …
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G19}
+  - {naam: Meerdikte, kolom: J, eenheidcel: K3, totaalcel: J19}
+  - {naam: Wapeningsnet, kolom: M, eenheidcel: N3, totaalcel: M19}
+  - {naam: Carborundum, kolom: P, eenheidcel: Q3, totaalcel: P19}
+  waarschuwingen: []
+- id: '42.02'
+  tabblad: §42
+  titel: Kunststof gietvloeren
+  titelcel: A22
+  kopregel: 23
+  omschrijvingcel: A24
+  invoerrijen: [24, 25, 26, 27]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H24, totaalcel: G29}
+  waarschuwingen: []
+- id: '42.03'
+  tabblad: §42
+  titel: Afschotlaag op plat dak
+  titelcel: A32
+  kopregel: 33
+  omschrijvingcel: A34
+  invoerrijen: [34, 35, 36, 37]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H34, totaalcel: G39}
+  waarschuwingen: []
+- id: '43.01'
+  tabblad: §43
+  titel: Vloerluik
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '43.02'
+  tabblad: §43
+  titel: Matomranding
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '43.03'
+  tabblad: §43
+  titel: Hoeklijn t.p.v. overheaddeur
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '43.04'
+  tabblad: §43
+  titel: Aluminium dakrandprofiel
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '43.05'
+  tabblad: §43
+  titel: Noodoverstorten (spuwer)
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '43.06'
+  tabblad: §43
+  titel: Waterslagen onder kozijnen
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '43.07'
+  tabblad: §43
+  titel: Bodemplaat in meterkast
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '43.08'
+  tabblad: §43
+  titel: Hoeklijnen boven kruipopeningen
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '44.01'
+  tabblad: §44
+  titel: Systeemplafond
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G14}
+  waarschuwingen: []
+- id: '44.02'
+  tabblad: §44
+  titel: Gipsvinylplafond
+  titelcel: A17
+  kopregel: 18
+  omschrijvingcel: A19
+  invoerrijen: [19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H19, totaalcel: G30}
+  waarschuwingen: []
+- id: '44.03'
+  tabblad: §44
+  titel: Houtwolcementplaat plafond
+  titelcel: A33
+  kopregel: 34
+  omschrijvingcel: A35
+  invoerrijen: [35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H35, totaalcel: G46}
+  waarschuwingen: []
+- id: '44.04'
+  tabblad: §44
+  titel: MS-wanden
+  titelcel: A49
+  kopregel: 50
+  omschrijvingcel: A51
+  invoerrijen: [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H51, totaalcel: G67}
+  waarschuwingen: []
+- id: '44.05'
+  tabblad: §44
+  titel: MS-voorzetwanden
+  titelcel: A70
+  kopregel: 71
+  omschrijvingcel: A72
+  invoerrijen: [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H72, totaalcel: G88}
+  waarschuwingen: []
+- id: '44.06'
+  tabblad: §44
+  titel: Voorzetwanden t.p.v. toilet
+  titelcel: A91
+  kopregel: 92
+  omschrijvingcel: A93
+  invoerrijen: [93, 94, 95, 96]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H93, totaalcel: G98}
+  waarschuwingen: []
+- id: '44.07'
+  tabblad: §44
+  titel: Drukschotten boven hardglazen wanden
+  titelcel: A101
+  kopregel: 102
+  omschrijvingcel: A103
+  invoerrijen: [103, 104, 105, 106]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H103, totaalcel: G108}
+  waarschuwingen: []
+- id: '44.08'
+  tabblad: §44
+  titel: Sanitaire wanden
+  titelcel: A111
+  kopregel: 112
+  omschrijvingcel: A113
+  invoerrijen: [113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H113, totaalcel: G124}
+  waarschuwingen: []
+- id: '45.01'
+  tabblad: §45
+  titel: Brandwerende betimmeringen
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '45.02'
+  tabblad: §45
+  titel: Vloerplinten
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '45.03'
+  tabblad: §45
+  titel: Koof t.p.v. systeemplafond
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '45.04'
+  tabblad: §45
+  titel: Aftimmeren houten buitenkozijnen
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '45.05'
+  tabblad: §45
+  titel: Aftimmeren houten binnenkozijnen
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '45.06'
+  tabblad: §45
+  titel: Werzalith vensterbanken
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '45.07'
+  tabblad: §45
+  titel: Boeiboord
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '45.08'
+  tabblad: §45
+  titel: Betimmeringen vloerranden
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G78}
+  waarschuwingen: []
+- id: '45.09'
+  tabblad: §45
+  titel: gipsplafond
+  titelcel: A81
+  kopregel: 82
+  omschrijvingcel: A83
+  invoerrijen: [83, 84, 85, 86]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H83, totaalcel: G88}
+  waarschuwingen: []
+- id: '45.10'
+  tabblad: §45
+  titel: Omtimmering t.b.v. verdelers
+  titelcel: A91
+  kopregel: 92
+  omschrijvingcel: A93
+  invoerrijen: [93, 94, 95, 96]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H93, totaalcel: G98}
+  waarschuwingen: []
+- id: '46.01'
+  tabblad: §46
+  titel: Schilderwerk buitenkozijnen
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G8}
+  waarschuwingen: []
+- id: '46.02'
+  tabblad: §46
+  titel: Schilderwerk binnenkozijnen
+  titelcel: A11
+  kopregel: 12
+  omschrijvingcel: A13
+  invoerrijen: [13, 14, 15, 16]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H13, totaalcel: G18}
+  waarschuwingen: []
+- id: '46.03'
+  tabblad: §46
+  titel: Schilderwerk voordeuren
+  titelcel: A21
+  kopregel: 22
+  omschrijvingcel: A23
+  invoerrijen: [23, 24, 25, 26]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H23, totaalcel: G28}
+  waarschuwingen: []
+- id: '46.04'
+  tabblad: §46
+  titel: Schilderwerk vloerplinten
+  titelcel: A31
+  kopregel: 32
+  omschrijvingcel: A33
+  invoerrijen: [33, 34, 35, 36]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H33, totaalcel: G38}
+  waarschuwingen: []
+- id: '46.05'
+  tabblad: §46
+  titel: Schilderwerk betimmeringen
+  titelcel: A41
+  kopregel: 42
+  omschrijvingcel: A43
+  invoerrijen: [43, 44, 45, 46]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H43, totaalcel: G48}
+  waarschuwingen: []
+- id: '46.06'
+  tabblad: §46
+  titel: Schilderwerk gipsplaten
+  titelcel: A51
+  kopregel: 52
+  omschrijvingcel: A53
+  invoerrijen: [53, 54, 55, 56]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H53, totaalcel: G58}
+  waarschuwingen: []
+- id: '46.07'
+  tabblad: §46
+  titel: Schilderwerk trap
+  titelcel: A61
+  kopregel: 62
+  omschrijvingcel: A63
+  invoerrijen: [63, 64, 65, 66]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H63, totaalcel: G68}
+  waarschuwingen: []
+- id: '46.08'
+  tabblad: §46
+  titel: Sauswerk wanden
+  titelcel: A71
+  kopregel: 72
+  omschrijvingcel: A73
+  invoerrijen: [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H73, totaalcel: G89}
+  waarschuwingen: []
+- id: '46.09'
+  tabblad: §46
+  titel: Glasvliesweefsel + texen
+  titelcel: A92
+  kopregel: 93
+  omschrijvingcel: A94
+  invoerrijen: [94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H94, totaalcel: G110}
+  waarschuwingen: []
+- id: '46.10'
+  tabblad: §46
+  titel: Latex op beton
+  titelcel: A113
+  kopregel: 114
+  omschrijvingcel: A115
+  invoerrijen: [115, 116, 117, 118]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H115, totaalcel: G120}
+  waarschuwingen: []
+- id: '46.11'
+  tabblad: §46
+  titel: Brandwerend schilderen ronde kolommen
+  titelcel: A123
+  kopregel: 124
+  omschrijvingcel: A125
+  invoerrijen: [125, 126, 127, 128]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H125, totaalcel: G130}
+  waarschuwingen: []
+- id: '48.01'
+  tabblad: §48
+  titel: Marmoleum
+  titelcel: A1
+  kopregel: 2
+  omschrijvingcel: A3
+  invoerrijen: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H3, totaalcel: G19}
+  waarschuwingen: []
+- id: '48.02'
+  tabblad: §48
+  titel: Schoonloopmat
+  titelcel: A22
+  kopregel: 23
+  omschrijvingcel: A24
+  invoerrijen: [24, 25, 26, 27]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H24, totaalcel: G29}
+  waarschuwingen: []
+- id: '48.03'
+  tabblad: §48
+  titel: rRubberen ringmat
+  titelcel: A32
+  kopregel: 33
+  omschrijvingcel: A34
+  invoerrijen: [34, 35, 36, 37]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H34, totaalcel: G39}
+  waarschuwingen: []
+- id: '48.04'
+  tabblad: §48
+  titel: Zachte vloerbedekking
+  titelcel: A42
+  kopregel: 43
+  omschrijvingcel: A44
+  invoerrijen: [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H44, totaalcel: G60}
+  waarschuwingen: []
+- id: '48.05'
+  tabblad: §48
+  titel: Overgangsprofielen
+  titelcel: A63
+  kopregel: 64
+  omschrijvingcel: A65
+  invoerrijen: [65, 66, 67, 68]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H65, totaalcel: G70}
+  waarschuwingen: []
+- id: '48.06'
+  tabblad: §48
+  titel: Kunststof vloerafwerking
+  titelcel: A73
+  kopregel: 74
+  omschrijvingcel: A75
+  invoerrijen: [75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H75, totaalcel: G91}
+  waarschuwingen: []
+- id: '48.07'
+  tabblad: §48
+  titel: Egaliseren vloeren
+  titelcel: A94
+  kopregel: 95
+  omschrijvingcel: A96
+  invoerrijen: [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H96, totaalcel: G112}
+  waarschuwingen: []
+- id: '48.08'
+  tabblad: §48
+  titel: Bekleden traptreden
+  titelcel: A115
+  kopregel: 116
+  omschrijvingcel: A117
+  invoerrijen: [117, 118, 119, 120]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H117, totaalcel: G122}
+  waarschuwingen: []
+- id: '48.09'
+  tabblad: §48
+  titel: Parketvloeren
+  titelcel: A125
+  kopregel: 126
+  omschrijvingcel: A127
+  invoerrijen: [127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H127, totaalcel: G143}
+  waarschuwingen: []
+- id: '48.10'
+  tabblad: §48
+  titel: Siergrindvloer
+  titelcel: A146
+  kopregel: 147
+  omschrijvingcel: A148
+  invoerrijen: [148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H148, totaalcel: G164}
+  waarschuwingen: []
+- id: '48.11'
+  tabblad: §48
+  titel: Oxaanolie op betonvloeren
+  titelcel: A167
+  kopregel: 168
+  omschrijvingcel: A169
+  invoerrijen: [169, 170, 171, 172]
+  invoerkolommen: {A: Omschrijving, B: nr., C: lengte, D: hoogte, E: breedte, F: aantal}
+  hoeveelheden:
+  - {naam: tot., kolom: G, eenheidcel: H169, totaalcel: G174}
+  waarschuwingen: []

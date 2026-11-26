@@ -154,3 +154,11 @@ def test_template_blijft_onaangeroerd(template_pad, mapping_pad):
     voor = template_pad.read_bytes()
     lees_calculatieregels(mapping_pad, template_pad)
     assert template_pad.read_bytes() == voor
+
+
+def test_opgetelde_aantallen_zijn_geen_hoofdhoeveelheid(regels):
+    """§30 Aluminium kozijnen: de totaalregel telt ook 'aantal' (F18) op; hoofdhoeveelheid blijft 'tot.' m2."""
+    r = regels["30.02"]
+    assert (r.hoeveelheden[0].kolom, r.eenheid) == ("G", "m2")
+    assert [h.kolom for h in r.afgeleide_hoeveelheden] == ["F"]
+    assert r.invoerkolommen["F"] == "aantal"

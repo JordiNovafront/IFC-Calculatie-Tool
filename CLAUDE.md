@@ -8,7 +8,7 @@ Volledig stappenplan: `docs/stappenplan.md` (origineel: `referentie/Stappenplan_
 
 | Fase | Inhoud | Status | Tag |
 |---|---|---|---|
-| 0 | Projectopzet, datamodel, testmodel, excel_mapping.yaml | **bezig** | – |
+| 0 | Projectopzet, datamodel, testmodel, excel_mapping.yaml | **wacht op akkoord** (82 tests groen) | – |
 | 1 | IFC importeren, viewer, meten, importrapport | open | – |
 | 2 | Elementen koppelen aan STABU (koppeltabel, handmatig, bewaren) | open | – |
 | 3 | Hoeveelheden berekenen, overzicht, ingekleurd 3D | open | – |
@@ -129,6 +129,10 @@ Elk bouwelement: materiaal (IfcMaterial), type, verdieping en base quantities.
 - Opslag SQLite per project (Jordi, 26-11-2026).
 - Tabbladen zonder hoeveelheidskolommen (§10 en §16 sloop-prijslijsten, §47, Installaties) leveren
   geen calculatieregels op – voorlopig, ter bevestiging door Bastiaan.
+- Hoofdhoeveelheid van een regel = eerste uitkomstkolom met formule in de totaalregel; opgetelde
+  invoerkolommen (bijv. 'aantal' bij kozijnen §30) komen als afgeleide hoeveelheid achteraan.
+- Template-check fase 0: geen macro's, afbeeldingen, grafieken of voorwaardelijke opmaak. openpyxl
+  verliest bij opslaan wel de binaire printerinstellingen (`xl/printerSettings/*.bin`) – meenemen in fase 5.
 
 ## Open vragen voor Bastiaan
 
@@ -140,3 +144,6 @@ Elk bouwelement: materiaal (IfcMaterial), type, verdieping en base quantities.
    totaalbereik, eenheden) – fout in template of bewust?
 4. Testmodel-opbouw (één verdieping, geen overlap, sparing zonder kozijn) akkoord?
 5. Standaard meetinstellingen (bruto/netto, sparingsdrempel, zijden, dagkanten, afronding) – fase 4.
+6. Regel 21.08 "wapening/beton" (§21 rij 109–117) heeft geen eigen titel; hoort bij
+   "Aanbrengen i.h.w.g betonvloer" (21.07)? Eigen calculatieregel of onderdeel van 21.07?
+7. Totaal van 233 calculatieregels – klopt dat met wat Bastiaan verwacht?
