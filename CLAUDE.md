@@ -8,7 +8,7 @@ Volledig stappenplan: `docs/stappenplan.md` (origineel: `referentie/Stappenplan_
 
 | Fase | Inhoud | Status | Tag |
 |---|---|---|---|
-| 0 | Projectopzet, datamodel, testmodel, excel_mapping.yaml | **wacht op akkoord** (82 tests groen) | – |
+| 0 | Projectopzet, datamodel, testmodel, excel_mapping.yaml | **wacht op akkoord** (80 tests groen) | – |
 | 1 | IFC importeren, viewer, meten, importrapport | open | – |
 | 2 | Elementen koppelen aan STABU (koppeltabel, handmatig, bewaren) | open | – |
 | 3 | Hoeveelheden berekenen, overzicht, ingekleurd 3D | open | – |
@@ -28,7 +28,7 @@ Status: `open` / `bezig` / `wacht op akkoord` / `akkoord`. Werk deze tabel bij b
   `config/excel_mapping.yaml`. Koppelregels staan in `config/stabu_koppeling.xlsx` (beheer Bastiaan).
 - Rekenregels zijn losse functies met een herkenbare Nederlandse naam (bijv. `zijvlak_netto_2_zijden`)
   en een docstring in gewone taal die een bouwkundige kan nalezen.
-- `referentie/` is **alleen-lezen** (bestanden staan op read-only; test controleert de hashes).
+- `referentie/` is **alleen-lezen** (test controleert de SHA-256-hashes; schrijfbeveiliging optioneel).
   Nooit het originele IFC of template wijzigen; exports zijn altijd nieuwe bestanden.
 - UI in het Nederlands. Vakbegrippen (uittrekstaat, calculatieregel, meetwijze, STABU, sparing,
   dagkant, zijvlak) blijven Nederlands, ook in code.
