@@ -1,0 +1,21 @@
+[project]
+name = "ifc-hoeveelheden"
+version = "0.0.1"
+description = "BMN De Klerk – hoeveelheden uittrekken uit IFC-modellen (lokale webtool)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # IfcOpenShell vast op 0.8.x; updaten alleen na goedkeuring van Bastiaan.
+    "ifcopenshell==0.8.5",
+    "openpyxl==3.1.5",
+    "pyyaml>=6",
+    "pydantic>=2.7,<3",
+    "fastapi>=0.110",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
