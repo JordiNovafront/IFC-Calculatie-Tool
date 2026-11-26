@@ -60,7 +60,7 @@ Status: `open` / `bezig` / `wacht op akkoord` / `akkoord`. Werk deze tabel bij b
 ## Commando's
 
 ```bash
-uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -e ".[test]"
+uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -r pyproject.toml --extra test
 .venv/bin/python -m pytest                       # alle tests
 .venv/bin/python tools/maak_testmodel.py          # testmodel IFC4 + IFC2x3 opnieuw genereren
 .venv/bin/python tools/genereer_excel_mapping.py  # excel_mapping.yaml opnieuw genereren uit het template
